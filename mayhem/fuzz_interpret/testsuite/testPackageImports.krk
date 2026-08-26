@@ -1,0 +1,63 @@
+def printPackage(p):
+    let s = repr(p)
+    let a,b,c,d = s.split(' ')
+    print(' '.join([a,b,c]),'...>')
+
+def testTop():
+    import foo
+    printPackage(foo)
+    try:
+        print(foo.bar, "Fail")
+    except as exception:
+        print(repr(exception)) # AttributeError
+
+def testCaching():
+    from foo.bar import baz
+    printPackage(baz)
+    import foo
+    printPackage(foo)
+    printPackage(foo.bar)
+    printPackage(foo.bar.baz)
+    print(foo.bar.baz.qux)
+
+def testDirect():
+    import foo.bar.baz
+    printPackage(foo)
+    printPackage(foo.bar)
+    printPackage(foo.bar.baz)
+    print(foo.bar.baz.qux)
+
+def testFromImport():
+    from foo.bar import baz
+    printPackage(baz)
+    print(baz.qux)
+    try:
+        print(foo, "Fail")
+    except as exception:
+        print(repr(exception))
+
+def testRenames():
+    import foo.bar.baz as blah
+    printPackage(blah)
+    print(blah.qux)
+    try:
+        print(foo, "Fail")
+    except as exception:
+        print(repr(exception))
+    from foo.bar.baz import qux as thing
+    print(thing)
+    try:
+        print(qux, "Fail")
+    except as exception:
+        print(repr(exception))
+    try:
+        print(foo.bar, "Fail")
+    except as exception:
+        print(repr(exception))
+
+if __name__ == '__main__':
+    testTop()
+    testCaching()
+    testDirect()
+    testFromImport()
+    testRenames()

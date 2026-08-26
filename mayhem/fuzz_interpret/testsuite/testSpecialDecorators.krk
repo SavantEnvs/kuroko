@@ -1,0 +1,45 @@
+
+class Foo(object):
+    myBar = 42
+    @staticmethod
+    def foo():
+        print("No args!")
+    @property
+    def bar(*setter):
+        if setter:
+            print("Called as a setter:", setter)
+            self.myBar = setter[0]
+        return self.myBar
+    @classmethod
+    def fromString(cls, string):
+        print(cls, string)
+
+class Bar(Foo):
+
+Foo.foo()
+print(Foo().bar)
+let f = Foo()
+f.myBar = 48
+print(f.bar)
+f.bar = 102
+print(f.bar)
+
+Foo.fromString("test")
+f.fromString("test")
+Bar.fromString("test")
+
+class Baz(object):
+    myBar = 42
+    @property
+    def bar(self):
+        print("I am a Python-style @property!")
+        return self.myBar
+    @bar.setter
+    def bar(self,value):
+        print("I am a Python-style @property's setter called with", value)
+        self.myBar = value
+
+let b = Baz()
+print(b.bar)
+b.bar = 0xCAFE
+print(b.bar)

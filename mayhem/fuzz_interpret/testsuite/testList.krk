@@ -1,0 +1,12 @@
+let l = list()
+
+l.append(1)
+l.append(2)
+l.append("string")
+l.append(3.14159)
+l.append("world")
+
+for v in l:
+    print(v)
+
+return 0

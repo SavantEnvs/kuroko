@@ -1,0 +1,40 @@
+for k,v in [(1,2),(3,4),(5,6)]:
+    print(k,v)
+# 1 2
+# 3 4
+# 5 6
+
+try:
+    for k,v,z in [(1,2,7),(3,4,8),(5,6)]:
+        print(k,v,z)
+except as exception:
+    print(exception.__class__.__name__)
+# 1 2 7
+# 3 4 8
+# ValueError
+
+try:
+    for k,v in [1,2,3]:
+        print("type error")
+except as exception:
+    print(exception.__class__.__name__)
+# TypeError
+
+for k, v in {'a': 1, 2: 'b'}.items():
+    print(k,v)
+# a 1
+# 2 b
+
+for i in {'a': 1, 2: 'b'}.items():
+    print(i)
+# ('a', 1)
+# (2, 'b')
+
+print(['{}: {}'.format(repr(k),repr(v)) for k, v in {1: 2, 3: 4}.items()])
+# ['1: 2', '3: 4']
+
+print([x for x,y in [(1,2),(3,4),(5,6)] if x + y > 3])
+# [3, 5]
+
+print(', '.join(['{}: {}'.format(repr(k),repr(v)) for k, v in {1: 2, '3': 4, 5: 'six', 'seven': 8}.items() if isinstance(k,str)]))
+# '3': 4, 'seven': 8
