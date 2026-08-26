@@ -1,0 +1,9 @@
+project: savantenvs/kuroko
+target: fuzz_interpret
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_interpret/testsuite
+cmds:
+  - cmd: /mayhem/fuzz_interpret
+    libfuzzer: true
+    timeout: 30

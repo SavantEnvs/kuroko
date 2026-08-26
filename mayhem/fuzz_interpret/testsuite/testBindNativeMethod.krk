@@ -1,0 +1,12 @@
+# Strings have a syntehesized __getitem__ so they can be indexed...
+print("Test"[1])
+
+class Test:
+    def __init__(self):
+        self.foo = "bar"
+
+# Instances have a __class__ property synthesized by the VM
+let test = Test()
+print(test.__class__)
+
+print((37.45).__int__())
